@@ -1,0 +1,1 @@
+// cppStatic.ts 

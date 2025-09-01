@@ -1,0 +1,1 @@
+// javaStatic.ts 

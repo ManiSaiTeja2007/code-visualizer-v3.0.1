@@ -1,0 +1,1 @@
+// cStatic.ts 
