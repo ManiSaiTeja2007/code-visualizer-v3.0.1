@@ -13,21 +13,25 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Advanced Code Visualizer',
-  description: 'Secure multi-language code visualization tool',
+  description: 'Secure multi-language code visualization tool'
 };
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params: { locale }
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale?: string };
 }) {
-  const messages = await getMessages({ locale });
+  // ✅ Fallback to English if locale missing
+  const currentLocale = locale ?? 'en';
+
+  const messages = await getMessages({ locale: currentLocale });
+
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={currentLocale} suppressHydrationWarning>
       <body className={inter.className}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={currentLocale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ErrorBoundary>
               <Header />
